@@ -14,7 +14,7 @@ const Chat = () => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        const newSocket = io('http://blooming-journey-60499.herokuapp.com');
+        const newSocket = io('https://blooming-journey-60499.herokuapp.com');
         setSocket(newSocket);
         return () => newSocket.close();
     }, [setSocket]);
