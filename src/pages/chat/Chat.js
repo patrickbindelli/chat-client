@@ -14,7 +14,7 @@ const Chat = () => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        const newSocket = io(process.env.SERVER_URL);
+        const newSocket = io(process.env.REACT_APP_SERVER_URL);
         setSocket(newSocket);
         return () => newSocket.close();
     }, [setSocket]);
