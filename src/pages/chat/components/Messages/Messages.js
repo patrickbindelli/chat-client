@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Messages.css';
-import { Card, CardContent, Typography, CardActions, Button, Grid } from '@mui/material';
+import { Card, CardContent, Typography, CardActions, Button, Grid, Slide, Zoom } from '@mui/material';
 
 function Messages({ socket }) {
   const [messages, setMessages] = useState({});
@@ -33,32 +33,32 @@ function Messages({ socket }) {
   }, [socket]);
 
   return (
-    <div className="message-list">
+    <>
       {[...Object.values(messages)]
         .sort((a, b) => a.time - b.time)
         .map((message) => (
-          <Card key={message.id} className="received"  style={{backgroundColor: "gray"}}>
-            <CardContent>
-                <Grid container direction="row" justifyContent="space-between" alignItems="center">
-                  <Grid item>
-                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                      {message.user.name}:
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          <Zoom in={true}>
+            <div className={localStorage.getItem("loggedUser") == message.user.username ? "sent" : "received"}>
+              <div className="message">
+                <div className='message-header'>
+                  <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                    {message.user.username}:
+                  </Typography>
+                  <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                       {new Date(message.time).toLocaleTimeString()}
                     </Typography>
-                  </Grid>
-                </Grid>
-              <Typography variant="body2">
-                {message.value}
-              </Typography>
-            </CardContent>
-        </Card>
+                </div>
+                <div className='message-body'>
+                  <Typography variant="body2">
+                    {message.value}
+                  </Typography>
+                </div>
+              </div>
+            </div>
+          </Zoom>
         ))
       }
-    </div>
+    </>
   );
 }
 

@@ -4,8 +4,8 @@ import {Menu} from '@mui/icons-material';
 
 const Navbar = () => {
     return(
-        <Box sx={{ flexGrow: 1 }}>   
-            <AppBar position="static">
+        <Box sx={{ flexGrow: 1 }}>    
+            <AppBar position="static" elevation={0}>
                 <Toolbar>
                     <IconButton
                     size="large"
